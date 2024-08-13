@@ -1,4 +1,8 @@
 #include <iostream>
+#include <queue>
+#include <stack>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 // 這是一個實現河內塔問題的遞迴函數
@@ -21,9 +25,50 @@ void hanoi(int n, char A, char B, char C) {
     }
 }
 
+void DFS(int n) {
+    if(n == 0) return;
+    DFS(n - 1);
+    cout << n << endl;
+    DFS(n - 1);
+}
+
+void BFS(int n) {
+    queue<int> q;
+    q.push(n);
+    while(!q.empty()) {
+        int x = q.front();
+        q.pop();
+        cout << x << endl;
+        q.push(x - 1);
+    }
+}
+
+void dijkstra(int n) {
+    priority_queue<int> pq;
+    pq.push(n);
+    while(!pq.empty()) {
+        int x = pq.top();
+        pq.pop();
+        cout << x << endl;
+        pq.push(x - 1);
+    }
+}
+
+void astar(int n) {
+    priority_queue<int> pq;
+    pq.push(n);
+    while(!pq.empty()) {
+        int x = pq.top();
+        pq.pop();
+        cout << x << endl;
+        pq.push(x - 1);
+    }
+}
+
 int main() {
 
-    hanoi(3, 'A', 'B', 'C');
+    dijkstra(3);
+    astar(3);
 
     return 0;
 }
